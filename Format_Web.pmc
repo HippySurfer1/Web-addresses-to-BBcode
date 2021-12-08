@@ -1,0 +1,18 @@
+﻿[PMC Globals]|None||
+[PMC Code v5.4.1]|F3||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro1
+Context=None|
+Groups=Start:1
+1|FileDelete|C:\Format_Dread\Formatted.txt|1|0|FileDelete|||||1|
+2|FileAppend|[list], Formatted.txt|1|0|FileAppend|||||2|
+3|[Assign Variable]|x := 0|1|0|Variable|Expression||||3|
+4|InputBox|Color, Enter a colour, , , 400, 300|1|0|InputBox|||||4|
+5|[LoopStart]|LoopStart|0|0|Loop|URL:="x"||||5|
+6|[Assign Variable]|x := x+1|1|0|Variable|Expression||||7|
+7|FileReadLine|URL, C:\Format_Dread\Web.txt, %x%|1|0|FileReadLine|||||8|
+8|[MsgBox]|%URL%|1|0|MsgBox|0|Think of a name|||9|
+9|InputBox|Label, Link name, , , 300, 200|1|0|InputBox|||||10|
+10|[Assign Variable]|Formatted := [*][url=%URL%][Color=%Color%]%Label%[/url][/color]`n|1|0|Variable|||||11|
+11|FileAppend|%Formatted%, C:\Format_Dread\Formatted.txt|1|0|FileAppend|||||16|
+12|[LoopEnd]|LoopEnd|1|0|Loop|||||17|
+13|FileAppend|[/list], Formatted.txt|1|0|FileAppend|||||19|
+
