@@ -8,14 +8,14 @@ Groups=Start:1
 4|[Assign Variable]|x := 0|1|0|Variable|Expression||||4|
 5|InputBox|Color, Enter a colour, Enter a Label color, , 400, 300|1|0|InputBox|||||5|
 6|InputBox|DesCol, Enter a colour, Enter a Description color, , 400, 300|1|0|InputBox|||||6|
-7|[LoopStart]|LoopStart|0|0|Loop|Address:=""||||7|
+7|[LoopStart]|C:\Format_Dread\Web.txt|1|0|LoopRead|||||7|
 8|[Assign Variable]|x := x+1|1|0|Variable|Expression||||9|
 9|FileReadLine|Address, C:\Format_Dread\Web.txt, %x%|1|0|FileReadLine|||||10|
-10|[MsgBox]|%Address%|1|0|MsgBox|0|Think of a name and description|||11|
-11|InputBox|Label, Link name, , , 300, 200|1|0|InputBox|||||12|
-12|InputBox|Description, Site Description, , , 400, 200|1|0|InputBox|||||13|
-13|[Assign Variable]|Formatted := [color=%Color%][*][/color][url=%Address%][color=%Color%]%Label%[/url][/color][color=%DesCol%]-----%Description%[/color]`n|1|0|Variable|||||14|
-14|FileAppend|%Formatted%, C:\Format_Dread\Formatted.txt|1|0|FileAppend|||||19|
-15|[LoopEnd]|LoopEnd|1|0|Loop|||||20|
-16|FileAppend|[/list], Formatted.txt|1|0|FileAppend|||||22|
+10|[MsgBox]|%Address%`n`nx  %x%|1|0|MsgBox|0|Think of a name and description|||11|
+11|InputBox|Label, Link name, A link label for %Address%, , 300, 200|1|0|InputBox|||||17|
+12|InputBox|Description, Site Description, A description for %Address%, , 400, 200|1|0|InputBox|||||18|
+13|[Assign Variable]|Formatted := [color=%Color%][*][/color][url=%Address%][color=%Color%]%Label%[/url][/color][color=%DesCol%]-----%Description%[/color]`n|1|0|Variable|||||19|
+14|FileAppend|%Formatted%, C:\Format_Dread\Formatted.txt|1|0|FileAppend|||||24|
+15|[LoopEnd]|LoopEnd|1|0|Loop|||||25|
+16|FileAppend|[/list], Formatted.txt|1|0|FileAppend|||||26|
 

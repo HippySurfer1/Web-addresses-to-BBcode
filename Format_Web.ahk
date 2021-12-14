@@ -23,13 +23,18 @@ Address := "a"
 x := 0
 InputBox, Color, Enter a colour, Enter a Label color, , 400, 300
 InputBox, DesCol, Enter a colour, Enter a Description color, , 400, 300
-Loop
+Loop, Read, C:\Format_Dread\Web.txt
 {
     x := x+1
     FileReadLine, Address, C:\Format_Dread\Web.txt, %x%
-    MsgBox, 0, Think of a name and description, %Address%
-    InputBox, Label, Link name, , , 300, 200
-    InputBox, Description, Site Description, , , 400, 200
+    MsgBox, 0, Think of a name and description, 
+    (LTrim
+    %Address%
+    
+    x  %x%
+    )
+    InputBox, Label, Link name, A link label for %Address%, , 300, 200
+    InputBox, Description, Site Description, A description for %Address%, , 400, 200
     Formatted := 
     (LTrim
     "[color=" Color "][*][/color][url=" Address "][color=" Color "]" Label "[/url][/color][color=" DesCol "]-----" Description "[/color]
@@ -37,7 +42,6 @@ Loop
     )
     FileAppend, %Formatted%, C:\Format_Dread\Formatted.txt
 }
-Until, Address:=""
 FileAppend, [/list], Formatted.txt
 Return
 
