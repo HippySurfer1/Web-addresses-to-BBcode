@@ -18,7 +18,9 @@ SetBatchLines -1
 F3::
 Macro1:
 FileDelete, C:\Format_Dread\Formatted.txt
+/*
 FileAppend, [list], Formatted.txt
+*/
 Address := "a"
 x := 0
 InputBox, Color, Enter a colour, Enter a Label color, , 400, 300
@@ -27,21 +29,21 @@ Loop, Read, C:\Format_Dread\Web.txt
 {
     x := x+1
     FileReadLine, Address, C:\Format_Dread\Web.txt, %x%
-    MsgBox, 0, Think of a name and description, 
-    (LTrim
-    %Address%
-    
-    x  %x%
-    )
-    InputBox, Label, Link name, A link label for %Address%, , 300, 200
-    InputBox, Description, Site Description, A description for %Address%, , 400, 200
+    InputBox, Label, Link name, A link label for %Address%, , 900, 200
+    InputBox, Description, Site Description, A description for %Address%, , 900, 300
     Formatted := 
     (LTrim
-    "[color=" Color "][*][/color][url=" Address "][color=" Color "]" Label "[/url][/color][color=" DesCol "]-----" Description "[/color]
+    "[url=" Address "][b][color=" Color "]" Label "[/url][/color][/b][color=" DesCol "]-----" Description "[/color]
     "
     )
+    /*
+    Formatted := "[*][url=" Address "]" Label "[/url]---" Description
+    */
+    MsgBox, 0, , %Formatted%
     FileAppend, %Formatted%, C:\Format_Dread\Formatted.txt
 }
+/*
 FileAppend, [/list], Formatted.txt
+*/
 Return
 
