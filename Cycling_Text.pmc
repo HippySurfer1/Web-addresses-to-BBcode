@@ -1,0 +1,54 @@
+﻿[PMC Globals]|None||
+[PMC Code v5.4.1]|F3||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro1
+Context=None|
+Groups=Start:1
+1|[LoopStart]|LoopStart|0|0|Loop|||||1|
+2|[Assign Variable]|Rainbow := |1|0|Variable|Expression||||3|
+3|[MsgBox]|OK to delete Rainbow.txt|1|0|MsgBox|0||||4|
+4|FileDelete|C:\Format_Dread\Rainbow.txt|1|0|FileDelete|||||5|
+5|[Assign Variable]|Red := 255|1|0|Variable|||||6|
+6|[Assign Variable]|Blue := 0|1|0|Variable|||||7|
+7|[Assign Variable]|Green := 0|1|0|Variable|||||8|
+8|[Assign Variable]|x := 0|1|0|Variable|Expression||||9|
+9|InputBox|Text, Type text in, , , 600, 300|1|0|InputBox|||||10|
+10|WinActivate||1|333|WinActivate||Type text in|||11|
+11|StringLen|Length, Text|1|0|StringLen|||||13|
+12|[Assign Variable]|Inc := (255/(Length/3))|1|0|Variable|Expression||||14|
+13|[Assign Variable]|Increment := floor(Inc)|1|0|Variable|Expression||||15|
+14|[Assign Variable]|Cyc := (255/Increment)|1|0|Variable|Expression||||16|
+15|[Assign Variable]|Cycles := (Floor(Cyc))+.1|1|0|Variable|Expression||||17|
+16|[LoopStart]|Cycles>A_Index|1|0|While|||||18|
+17|[Gosub]|DecToHex|1|0|Gosub|||||20|
+18|[Assign Variable]|Red := Red-Increment|1|0|Variable|Expression||||21|
+19|[Assign Variable]|Green := Green+Increment|1|0|Variable|Expression||||22|
+20|[LoopEnd]|LoopEnd|1|0|Loop|||||23|
+21|[Assign Variable]|Red := 0|1|0|Variable|||||24|
+22|[Assign Variable]|Blue := 0|1|0|Variable|||||25|
+23|[Assign Variable]|Green := 255|1|0|Variable|||||26|
+24|[LoopStart]|Cycles>A_Index|1|0|While|||||27|
+25|[Gosub]|DecToHex|1|0|Gosub|||||29|
+26|[Assign Variable]|Blue := Blue+Increment|1|0|Variable|Expression||||30|
+27|[Assign Variable]|Green := Green-Increment|1|0|Variable|Expression||||31|
+28|[LoopEnd]|LoopEnd|1|0|Loop|||||32|
+29|[Assign Variable]|Red := 0|1|0|Variable|||||33|
+30|[Assign Variable]|Blue := 255|1|0|Variable|||||34|
+31|[Assign Variable]|Green := 0|1|0|Variable|||||35|
+32|[LoopStart]|Cycles>A_Index|1|0|While|||||36|
+33|[Gosub]|DecToHex|1|0|Gosub|||||38|
+34|[Assign Variable]|Red := Red+Increment|1|0|Variable|Expression||||39|
+35|[Assign Variable]|Blue := Blue-Increment|1|0|Variable|Expression||||40|
+36|[LoopEnd]|LoopEnd|1|0|Loop|||||41|
+37|[MsgBox]|Last Loop Stats`nLength--%Length%`nLetters Processed %x%`nIf Letters Procesed is < Length add a character.`nOutput to ColorCycling.txt `n%Rainbow%`nCycles--%Cycles%`nInc--%Inc%`nIncrement---%Increment%`nCyc---%Cyc%`n[color=#%Redhex%%Bluehex%%Greenhex%]%RBtext%[/color]`nred %Red% ---%Redhex%`nblue %Blue%---%Bluehex%`ngreen %Green%----%Greenhex%`n|1|0|MsgBox|0||||42|
+38|FileAppend|%Rainbow%, C:\Format_Dread\Rainbow.txt|1|0|FileAppend|||||60|
+39|FileCopy|C:\Format_Dread\Rainbow.txt, C:\Format_Dread\ColorCycling.txt|1|0|FileCopy|||||61|
+40|[LoopEnd]|LoopEnd|1|0|Loop|||||62|
+41|[Label]|DecToHex|1|0|Label|||||63|
+42|[Assign Variable]|x := x+1|1|0|Variable|Expression||||64|
+43|SubStr|RBText := Text, x, 1|1|0|Function|||||65|
+44|Format|Redhex := "{:02X}", Red|1|0|Function|||||66|
+45|Format|Bluehex := "{:02X}", Blue|1|0|Function|||||67|
+46|Format|Greenhex := "{:02X}", Green|1|0|Function|||||68|
+47|[Assign Variable]|Rain := [color=#%Redhex%%Greenhex%%Bluehex%]%RBtext%[/color]|1|0|Variable|||||69|
+48|[Assign Variable]|Rainbow := %Rainbow%%Rain%|1|0|Variable|||||70|
+49|Return||1|0|Return|||||71|
+

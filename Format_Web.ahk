@@ -19,22 +19,25 @@ F3::
 Macro1:
 FileDelete, C:\Format_Dread\Formatted.txt
 FileAppend, [list], Formatted.txt
-InputBox, Color, Enter a colour, , , 400, 300
+Address := "a"
 x := 0
+InputBox, Color, Enter a colour, Enter a Label color, , 400, 300
+InputBox, DesCol, Enter a colour, Enter a Description color, , 400, 300
 Loop
 {
     x := x+1
-    FileReadLine, URL, C:\Format_Dread\Web.txt, %x%
-    MsgBox, 0, Think of a name, %URL%
+    FileReadLine, Address, C:\Format_Dread\Web.txt, %x%
+    MsgBox, 0, Think of a name and description, %Address%
     InputBox, Label, Link name, , , 300, 200
+    InputBox, Description, Site Description, , , 400, 200
     Formatted := 
     (LTrim
-    "[*][url=" URL "][Color=" Color "]" Label "[/url][/color]
+    "[color=" Color "][*][/color][url=" Address "][color=" Color "]" Label "[/url][/color][color=" DesCol "]-----" Description "[/color]
     "
     )
     FileAppend, %Formatted%, C:\Format_Dread\Formatted.txt
 }
-Until, URL:="x"
+Until, Address:=""
 FileAppend, [/list], Formatted.txt
 Return
 
